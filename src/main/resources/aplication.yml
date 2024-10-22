@@ -1,0 +1,63 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        globally_quoted_identifiers: true  # Ensures keywords like "user" are quoted in SQL
+
+# Disable Hibernate SQL logging
+logging:
+  level:
+    org.hibernate.SQL: OFF
+
+
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.web: DEBUG
+#    your.package.name: DEBUG
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.orm.jdbc.bind: TRACE
+#    org.hibernate.engine.transaction: DEBUG
+#    org.hibernate.engine.transaction.spi: DEBUG
+#    org.hibernate.engine.transaction.internal: DEBUG
+#    org.hibernate.resource.jdbc: DEBUG
+#    org.hibernate.resource.jdbc.internal: DEBUG
+#    org.springframework.security: DEBUG
+#    org.springframework.security.oauth2: DEBUG
+#    org.springframework.security.oauth2.client: DEBUG
+#    org.springframework.security.oauth2.provider: DEBUG
+#    org.springframework.security.oauth2.server: DEBUG
+
+# Context path for the application as a whole
+server:
+  servlet:
+    context-path: /vlak
+    session:
+      timeout: 30m
+      cookie:
+        name: NSS_VLAK_JSESSIONID
+
+# Database connection setup
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/nss
+    username: nss
+    password: nss
+
+# Database platform configuration for JPA
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    properties:
+      hibernate:
+        hbm2ddl.auto: update
+        format_sql: true
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
